@@ -9,10 +9,10 @@ using System.Reflection;
 
 namespace TelegaBot
 {
-    public class Parser
+    public static class Parser
     {
         public static List<Comand> commands { get; } = new List<Comand>();
-        void Init()
+        public static void  Init()
         {
             
             var dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Commands");
