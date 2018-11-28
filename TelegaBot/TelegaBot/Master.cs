@@ -9,9 +9,10 @@ namespace TelegaBot
 {
     static class Master
     {
+
         public static void Process(Telegram.Bot.Types.Message message)
         {
-            Parser.
+            Parser.CommandParser(message.Text);
         }
 
         public static Message Show()

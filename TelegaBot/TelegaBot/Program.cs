@@ -15,7 +15,6 @@ namespace TelegaBot
     {
         static ITelegramBotClient botClient;
 
-        static Master master = new Master();
         static void Main()
         {
             var httpProxy = new WebProxy(Host: "109.192.91.198", Port: 53701) { };
@@ -33,7 +32,13 @@ namespace TelegaBot
 
         static void Bot_OnMessage(object sender, MessageEventArgs e)
         {
-            master.ProcessMessage()
+            Master.Process(e.Message);
+            if (e.Message.Text != null)
+            {
+                Console.WriteLine($"Received a text message in chat {e.Message.Chat.Id}.");
+
+                botClient.SendTextMessageAsync(chatId: e.Message.Chat, text: "You said:\n" + e.Message.Text);
+            }
         }
     }
 }

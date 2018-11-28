@@ -5,16 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Reflection;
+using Telegram.Bot.Types;
 
 
 namespace TelegaBot
 {
     public static class Parser
     {
-        public static List<Comand> commands { get; } = new List<Comand>();
-        public static void  Init()
+        /*public static List<Comand> commands { get; } = new List<Comand>();
+        public static void Init()
         {
-            
             var dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Commands");
             foreach (var path in Directory.GetFiles(dir, "*.dll"))
             {
@@ -37,7 +37,29 @@ namespace TelegaBot
                 }
             }
             return res;
+            
+            
+        }*/
+
+        public static Message CommandParser(string command)
+        {
+            switch (command)
+            {
+                case "Show":
+                    {
+                        return Master.Show();
+                    }
+                default:
+                    {
+
+                        Message message = new Message();
+                        message.Text = "Command is not existent";
+                        return message;
+                    }
+            }
+
         }
+
 
     }
 }
